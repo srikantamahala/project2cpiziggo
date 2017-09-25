@@ -1,0 +1,400 @@
+my-app .main-panel .main-content .card{
+    animation-duration: 750ms;
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+@media (min-width: 992px){
+    .typo-line{
+        padding-left: 140px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .typo-line .category{
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0px;
+        position: absolute;
+    }
+    .loginHolder{
+      margin-left: 150px;
+    }
+}
+
+#map{
+    position:relative;
+    width:100%;
+    height: calc(100% - 60px);
+    margin-top: 70px;
+}
+
+.places-buttons .btn{
+    margin-bottom: 30px
+}
+
+.space-70{
+    height: 70px;
+    display: block;
+}
+
+.sidebar .nav > li.active-pro{
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+}
+.moving-tab{
+    background-color: #ff9800 !important;
+}
+
+.logoutDropdown li a:hover{
+    background-color: #ff9800 !important;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active, .navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+  background-color: #ff9800 !important;
+  color: #FFFFFF;
+  box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+.comingSoon{
+    font-size: 40px;
+    margin-left: 35%;
+    margin-top: 120px;
+    color:black;
+    opacity: 0.3;
+}
+.profileValue {
+    float: right;
+    padding-left: 10px;
+    margin-top: 10px;
+    padding-right: 16px;
+    font-size: 13px;
+    width:129px;
+}
+.profileKey{
+   float: left;
+   margin-top: 10px;
+   padding-left: 16px; 
+   font-weight: 400;
+}
+#profilebackbtn {
+    width: 13px;
+    height: 21px;
+    background: url('../img/profileback.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border: none;
+}
+.homelocation{
+   top:0px;
+   bottom:0px;
+   left:0;
+   right:0;
+   z-index: 2;
+   position:absolute;
+   background: url('../img/BG_image.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.bulbIconOn{
+    height: 40px;
+    width: 40px;
+    background: url('../img/activebulb.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: block;
+}
+.bulbIconOff{
+    height: 40px;
+    width: 40px;
+    background: url('../img/normalbulb.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: block;
+}
+.bulbIconOff:hover{
+    height: 70px;
+    width: 70px;
+    background: url('../img/hoverbulb.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: block;
+}
+.activebulbIcon{
+    height: 70px;
+    width: 70px;
+    background: url('../img/activebulb.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: block;
+}
+.mdbulbIconOn{
+    height: 40px;
+    width: 40px;
+    background-color: #ff9800;
+    color: #FFF; 
+    border-radius: 25px;
+    padding-left: 5px;
+    padding-top:6px;
+}
+.mdbulbIconOff{
+    height: 40px;
+    width: 40px;
+    background-color: #ff9800;
+    color: #000;
+    border-radius: 25px;
+    padding-left: 5px;
+    padding-top:6px; 
+}
+.mdbulbIconOn:hover{
+    height: 70px;
+    width: 70px;
+    border-radius: 35px;
+    padding-left: 10px;
+    padding-top: 10px;  
+}
+.mdbulbIconOff:hover{
+    height: 70px;
+    width: 70px;
+    border-radius: 35px;
+    padding-left: 10px;
+    padding-top: 10px; 
+}
+.mdactivebulbIcon{
+   height: 70px;
+   width: 70px;
+   border-radius: 35px;
+   padding-left: 10px;
+   padding-top: 10px;
+}
+.mdactivebulbIcon:after {
+	left: 85%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	position: absolute;
+	pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+	border-left-color: #ff9800;
+	border-width:20px;
+	margin-top: -20px;
+}
+
+.camera{
+    height: 40px;
+    width: 40px;
+    background: url('../img/camera.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-left: 40%;
+    margin-top: 88px;
+    position: absolute;
+}
+.censor{
+    height: 40px;
+    width: 40px;
+    background: url('../img/censor.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-left: 59%;
+    margin-top: 155px;
+    position: absolute;
+}
+.lock{
+    height: 40px;
+    width: 40px;
+    background: url('../img/lock.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-left: 38%;
+    margin-top: 182px;
+    position: absolute;
+}
+.thermostat{
+    height: 40px;
+    width: 40px;
+    background: url('../img/thermostat.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-left: 34%;
+    margin-top: 194px;
+    position: absolute;
+}
+.homeMenu{
+    list-style: none;
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 50px;
+    padding-left:0px;
+
+}
+.homeMenu li{
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    padding-left: 13px;
+    color: #FFF;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    margin-top:10px;
+    margin-right: 20px;
+    padding-right:13px;
+}
+.homeMenu li:hover{
+    color: #ff9800;
+    border-bottom: 3px solid #ff9800;
+}
+
+.activeHomeMenu{
+    height: 30px;
+    color: #ff9800;
+    border-bottom: 3px solid #ff9800;
+    border-right: 0 !important;
+    line-height: 30px; 
+}
+
+.largerBulbIcon{
+    font-size: 50px !important;
+}
+.micon{
+    font-size: 30px !important;
+}
+.micon:hover{
+    font-size: 50px !important;
+}
+.activemicon{
+    font-size: 50px !important;
+}
+.card{
+    border-radius: 13px;
+}
+.card .card-footer {
+  margin: 0 20px 30px;
+}
+@media (max-width: 991px) {
+    .sidebar .nav > li.active-pro{
+        position: relative;
+        width: 100%;
+        bottom: 10px;
+    }
+    .sidebar .nav > li.active-pro > a{
+        margin-top: 20px;
+
+    }
+    .comingSoon{
+       margin-left: 10%;
+    }
+}
+
+.tim-row{
+    margin-bottom: 20px;
+}
+
+.tim-typo{
+    padding-left: 25%;
+    margin-bottom: 40px;
+    position: relative;
+}
+.tim-typo .tim-note{
+    bottom: 10px;
+    color: #c0c1c2;
+    display: block;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 13px;
+    left: 0;
+    margin-left: 20px;
+    position: absolute;
+    width: 260px;
+}
+.tim-row{
+    padding-top: 50px;
+}
+.tim-row h3{
+    margin-top: 0;
+}
+
+.comingSoon{
+    font-size: 40px;
+    margin-left: 30%;
+    margin-top: 120px;
+    color:black;
+    opacity: 0.3;
+}
+
+.widgetNum{
+    color: white;
+    float: right;
+    font-size: 60px;
+    font-weight:200;
+    margin-top: 30px;
+    margin-right: 25px;
+}
+
+.footerWrapper{
+  width: 100%;
+  height: 100%;
+}
+
+/*==================== multicolor*/
+
+.multicolor{
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-top:27px;
+  border-radius: 35px;
+  border:none;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/*.color-picker{
+  z-index: 200000 !important;
+}*/
+/*.card{
+  z-index: -2 !important;
+}*/
+
+/*.color-picker{
+  width: 187px !important;
+  top: 152px !important;
+  left: 21px !important;
+}
+.rgba-text{
+  display: none !important;
+}
+.box {
+  display: none !important;
+}
+.type-policy{
+  display:none !important;
+}*/
+
+.hsla-text{
+  display: none !important;
+}
+.rgba-text{
+  display: none !important;
+}
+.hex-text{
+  display: none !important;
+}
+.type-policy{
+  display: none !important;
+}

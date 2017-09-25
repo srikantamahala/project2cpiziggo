@@ -1,0 +1,30 @@
+<!--<div class="logo">
+    <a href="#" class="simple-text">
+        <div class="logo-img">
+            <img src="/assets/img/ziggo.jpg"/>
+        </div>
+        VodafoneZiggo
+    </a>
+</div>-->
+
+<div class="logo">
+    <a style="color:#3c4858;">
+    <div class="logoinner" style="margin-top:10px;font-size:20px;font-weight:400;">
+        <div class="logo-img">
+            <img src="/assets/img/ziggo1.jpg" style="width: 54px; height: 30px; top:18px; left: 12px;"/>
+        </div>
+        VodafoneZiggo
+    </div></a>
+</div>
+<div class="sidebar-wrapper">
+    <div class="nav-container">
+        <ul class="nav">
+            <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}}"> 
+                <a [routerLink]="[menuItem.path]">
+                    <i class="material-icons">{{menuItem.icon}}</i>
+                    <p>{{menuItem.title}}</p>
+                </a> 
+            </li>
+        </ul>
+    </div>
+</div>

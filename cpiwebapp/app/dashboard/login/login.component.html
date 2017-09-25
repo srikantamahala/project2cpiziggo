@@ -1,0 +1,63 @@
+<div class="main-content" (keypress)="submitLogin($event)">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-lg-6">
+            <div class="card loginHolder">
+                <div class="card-header" style="background-color: #fefdfd; text-align:right;" data-background-color="">
+                    <span class="title" style="float:left; font-size:30px; font-weight:400;margin-top:7px;color:#ff9800;">Login</span>
+                    <!--<p class="category">Complete your profile</p>-->
+                    <div><img src="../assets/img/ziggo1.jpg" style="height:40px;width:60px;"></div>
+                </div>
+                <div class="card-content">
+                    <!--<form>-->
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label class="control-label">User Name</label>
+                                    <input type="text" class="form-control" [(ngModel)]="uname" >
+                                    <p *ngIf="unamerequired" style="color:red;">Username is required </p>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <label class="control-label">Password</label>
+                                    <input type="password" [(ngModel)]="pwd" class="form-control" >
+                                    <p *ngIf="pwdrequired" style="color:red;">Password is required</p>
+                                    <p *ngIf="invaliduname" style="color:red;">Invalid username or password</p>
+                                     <p *ngIf="unexpectedError" style="color:red;">Unexpected error in server</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button (click)="goLogin()" class="btn btn-danger pull-left" style="background-color: #ff9800;">Submit</button>
+                        <!--<button (click)="tokenVerify()" class="btn btn-danger pull-right" style="background-color: #ff9800;">verify</button>-->
+                        <div class="clearfix"></div>
+                    <!--</form>-->
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-md-4">
+            <div class="card card-profile">
+                <div class="card-avatar">
+                    <a href="#pablo">
+                        <img class="img" src="../assets/img/faces/marc.jpg" />
+                    </a>
+                </div>
+
+                <div class="content">
+                    <h6 class="category text-gray">CEO / Co-Founder</h6>
+                    <h4 class="card-title">Alec Thompson</h4>
+                    <p class="card-content">
+                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                    </p>
+                    <a href="#pablo" class="btn btn-danger btn-round">Follow</a>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>
+</div>

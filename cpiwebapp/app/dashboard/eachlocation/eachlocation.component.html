@@ -1,0 +1,68 @@
+<div class="main-content">
+    <div *ngIf="isLoading" style="width: 100%; height: 100vh; background-color: rgba(158, 158, 158, 0.24); position: absolute; top: 0;">
+        <img src="../../../assets/img/loader.gif" style="position: absolute; left: 35%; top: 20%; height: 300px; width: 300px;">
+    </div>
+    <div class="container-fluid">
+        <div *ngIf="serverError" class="row" style="margin-top: 180px;text-align:center;">
+             <span class="comingSoon">{{ errorDescription }}</span>
+         </div>
+         <div *ngIf="!serverError" class="row" style="margin-top:-60px;margin-bottom:50px;"><span style="font-size: 30px; font-weight: 400;margin-left:20px;">{{ locationName }}</span></div>
+         <div *ngIf="!serverError" class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6" *ngFor ="let device of alldevices" style="height:348px;">
+                    <div class="card card-stats" >
+                        <div class="card-header" style="background-color: #000; color: white;">
+                            <i class="material-icons" *ngIf="deviceIcon(device.deviceUID, 'EP1 Philips Light Strip')">timeline</i>
+                            <i class="material-icons" *ngIf="deviceIcon(device.deviceUID, 'EP1 Philips White Bulb')">lightbulb_outline</i>
+                            <i class="material-icons" *ngIf="deviceIcon(device.deviceUID, 'EP1 Philips Color Bulb')">lightbulb_outline</i>
+                        </div>
+                        <div class="card-content">
+                            <div style="width: 97px; float:right; text-align:right;padding-bottom:5px;">
+                             <p class="category" title="{{ device.deviceProfile[0].value }}">{{ deviceName(device.deviceProfile[0].value) }}...</p>
+                            </div>
+                           <button *ngIf="device.showProfile" id="profilebackbtn" (click)="backToControls(device)"></button>
+                           <div *ngIf="!device.showProfile">
+                                <div class="blueSwitch" *ngIf="checkCapable(device.deviceCapabilities,'switch') && device.state.reachable == true">
+                                        <label class="switch">
+                                            <input type="checkbox" [(ngModel)]="device.state.on" (change)="showOnorOff(device.state.on, device.deviceId)" >
+                                            <div class="slider round"></div>
+                                        </label>
+                                </div>
+                                <div class="disabledSwitch" style="cursor:none;pointer-events:none;" *ngIf="device.state.reachable == false">
+                                    <label class="switch">
+                                        <input type="checkbox" [(ngModel)]="device.state.on">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                           </div>
+                        </div>
+                        <div class="footerWrapper">
+                            <div class="deviceProfile" *ngIf="device.showProfile" style="height:264px;width:235px;">
+                                <div *ngFor ="let profile of device.deviceProfile"><div *ngIf="showPublicProfile(profile.type)"><div class="profileKey">{{ profile.name }}:</div><div class="profileValue">{{ profile.value }}</div></div></div>
+                            </div>
+                            <div *ngIf="!device.showProfile">
+                                <div class="card-footer" *ngIf="checkCapable(device.deviceCapabilities,'hue')">
+                                    <span>Color</span><span style="float:right;"></span>
+                                    <!--<input class="multicolor" [(ngModel)]="blackrange1" min="0" max="100" (click)="hidePopup($event)" [cpFallbackColor]="thatcolor.color1" [cpPosition]="'bottom'" [(colorPicker)]="thatcolor.color1" [(ngModel)]="thatcolor.color1" [style.background]="thatcolor.color1" [style.color]="thatcolor.color1"/>-->
+                                    <span *ngIf="!device.state.on || device.state.reachable == false" class="greyColorFullRange" > <input type="range" min="1000" max="65000" [(ngModel)]="device.state.hue" disabled="true"></span>
+                                    <span *ngIf="device.state.on && device.state.reachable == true" class="blackColorFullRange" > <input type="range" min="1000" max="65000" [(ngModel)]="device.state.hue" (change)="showChangeColor(device.state.hue,device.deviceId)"></span>
+                                </div>
+                                <div class="card-footer" *ngIf="checkCapable(device.deviceCapabilities,'bri')">
+                                    <span>Brightness</span><span style="float:right;">{{ roundUpBrightness(device.state.bri) }}%</span>
+                                    <span *ngIf="device.state.on && device.state.reachable == true" class="blackRange"> <input type="range" min="0" max="254" [(ngModel)]="device.state.bri" (change)="showChangeBrightness(device.state.bri,device.deviceId)"></span>
+                                    <span *ngIf="!device.state.on || device.state.reachable == false" class="disabledRange"> <input type="range" [(ngModel)]="device.state.bri" disabled="true" min="0" max="254"></span>  
+                                </div>
+                                <div class="card-footer" *ngIf="checkCapable(device.deviceCapabilities,'sat')">
+                                    <span>Saturation</span><span style="float:right;">{{ roundUpSaturation(device.state.sat) }}%</span>
+                                    <span *ngIf="device.state.on && device.state.reachable == true" class="blackRange"> <input type="range" min="0" max="254" [(ngModel)]="device.state.sat" (change)="showChangeSaturation(device.state.sat,device.deviceId)"></span>
+                                    <span *ngIf="!device.state.on || device.state.reachable == false" class="disabledRange"> <input type="range" [(ngModel)]="device.state.sat" disabled="true" min="0" max="254"></span>    
+                                </div>
+                                <div class="card-footer">
+                                    <a style="color:#0645ad;cursor:pointer;" (click)="showProfilePopup(device, $event)">Device Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+    </div>
+</div>

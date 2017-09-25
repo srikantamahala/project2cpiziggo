@@ -1,0 +1,96 @@
+<div class="homelocation">
+    <ul class="homeMenu">
+        <li [ngClass]="{'activeHomeMenu': getTypeWidget('safety')}" (click)="setTypeWidget('safety')">SAFETY</li>
+        <li [ngClass]="{'activeHomeMenu': getTypeWidget('security')}" (click)="setTypeWidget('security')">SECURITY</li>
+        <li [ngClass]="{'activeHomeMenu': getTypeWidget('lighting')}" (click)="setTypeWidget('lighting')">LIGHTING EXPERIENCE</li>
+    </ul>
+    <div [@deviceAnimation] *ngIf="getTypeWidget('security') || !hideAll">
+        <div class="camera"></div>
+    </div>
+    <div [@deviceAnimation] *ngIf="getTypeWidget('security') || !hideAll">
+        <div class="censor"></div>
+    </div>
+    <div [@deviceAnimation] *ngIf="getTypeWidget('safety') || !hideAll">
+        <div class="lock"></div>
+    </div>
+    <div [@deviceAnimation] *ngIf="getTypeWidget('safety') || !hideAll">
+        <div class="thermostat"></div>
+    </div>
+    <button id="profilebackbtn" (click)="goPreviousView()" style="margin-left: 20px;margin-top: 15px;"></button>
+    <div *ngFor ="let widget of widgets;  let i = index;">
+        <!--<div *ngIf="widget.state.on" class="bulbIconOn" [ngClass]="{'activebulbIcon': showControl(widget.deviceId)}" [ngStyle]="bulbstyle(i)" (click)="showWidget(widget.deviceId)">
+            <div [ngStyle]="{'background-color': 'hsl('+widget.state.hue/255+', 100%, 50%)'}" style="height: 20px;width:20px;margin-top:10px;margin-left:10px;"></div>
+        </div>
+        <div *ngIf="!widget.state.on" class="bulbIconOff" [ngClass]="{'activebulbIcon': showControl(widget.deviceId)}" [ngStyle]="bulbstyle(i)" (click)="showWidget(widget.deviceId)">
+            <div [ngStyle]="{'background-color': 'hsl('+widget.state.hue/255+', 100%, 50%)'}" style="height: 20px;width:20px;margin-top:10px;margin-left:10px;"></div>
+        </div>-->
+        <div [@deviceAnimation] *ngIf="getTypeWidget('lighting') || !hideAll">
+            <div *ngIf="widget.state.on" [ngStyle]="bulbstyle(i)" [ngClass]="{'mdactivebulbIcon': showControl(widget.deviceId)}" (click)="showWidget(widget.deviceId)" class="mdbulbIconOn">
+                <i *ngIf="showControl(widget.deviceId)" class="material-icons activemicon" [ngStyle]="{'color': widget.state.hue == null ? 'hsl(0, 0%, 100%)' : 'hsl('+widget.state.hue/255+', 100%, 50%)'}">lightbulb_outline</i>
+                <i *ngIf="!showControl(widget.deviceId)" class="material-icons micon" [ngStyle]="{'color': widget.state.hue == null ? 'hsl(0, 0%, 100%)' : 'hsl('+widget.state.hue/255+', 100%, 50%)'}">lightbulb_outline</i>
+            </div>
+            <div *ngIf="!widget.state.on" [ngStyle]="bulbstyle(i)" [ngClass]="{'mdactivebulbIcon': showControl(widget.deviceId)}" (click)="showWidget(widget.deviceId)" class="mdbulbIconOff">
+                <i *ngIf="showControl(widget.deviceId)" class="material-icons activemicon">lightbulb_outline</i>
+                <i *ngIf="!showControl(widget.deviceId)" class="material-icons micon">lightbulb_outline</i>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6" *ngIf="showControl(widget.deviceId)" [ngStyle]="popupstyle(i)" style="height:348px;z-index:1;">
+            <div class="card card-stats">
+                <!--<div class="card-header" style="background-color: #000; color: white;">
+                    <i class="material-icons" *ngIf="deviceIcon(widget.deviceUID, 'EP1 Philips Light Strip')">timeline</i>
+                    <i class="material-icons" *ngIf="deviceIcon(widget.deviceUID, 'EP1 Philips White Bulb')">lightbulb_outline</i>
+                    <i class="material-icons" *ngIf="deviceIcon(widget.deviceUID, 'EP1 Philips Color Bulb')">lightbulb_outline</i>
+                </div>-->
+                <div class="card-content">
+                    <button type="button" (click)="showWidget(widget.deviceId)" class="close" aria-label="Close" style="color:#c3c3c3;font-size:30px;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div style="width: 97px;margin-left:65px;margin-top:10px; text-align:right;padding-bottom:5px;">
+                        <p class="category" title="{{ widget.deviceProfile[0].value }}">{{ deviceName(widget.deviceProfile[0].value) }}...</p>
+                    </div>
+                    <!--<input *ngIf="widget.showProfile" class="backbutton" type="button" (click)="backToControls(widget)">-->
+                    <!--<button *ngIf="widget.showProfile" id="profilebackbtn" (click)="backToControls(widget)"></button>-->
+                    <!--<div>-->
+                        <div class="blueSwitch" *ngIf="checkCapable(widget.deviceCapabilities,'switch') && widget.state.reachable == true">
+                            <label class="switch" style="float:left;margin-top:-30px;">
+                                <input type="checkbox" [(ngModel)]="widget.state.on" (change)="showOnorOff(widget.state.on, widget.deviceId)" >
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                        <div class="disabledSwitch" style="cursor:none;pointer-events:none;" *ngIf="widget.state.reachable == false">
+                            <label class="switch" style="float:left;margin-top:-33px;">
+                                <input type="checkbox" [(ngModel)]="widget.state.on">
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                    <!--</div>                  -->
+                </div>
+                <div class="footerWrapper">
+                    <!--<div class="deviceProfile" *ngIf="widget.showProfile" style="height:264px;width:235px;">
+                        <div *ngFor ="let profile of widget.deviceProfile"><div *ngIf="showPublicProfile(profile.type)"><div class="profileKey">{{ profile.name }}:</div><div class="profileValue">{{ profile.value }}</div></div></div>
+                    </div>-->
+                    <div>
+                        <div class="card-footer" *ngIf="checkCapable(widget.deviceCapabilities,'hue')">
+                            <span>Color</span><span style="float:right;"></span>
+                            <span *ngIf="!widget.state.on || widget.state.reachable == false" class="greyColorFullRange" > <input type="range" min="1000" max="65000" [(ngModel)]="widget.state.hue" disabled="true"></span>
+                            <span *ngIf="widget.state.on && widget.state.reachable == true" class="blackColorFullRange" > <input type="range" min="1000" max="65000" [(ngModel)]="widget.state.hue" (change)="showChangeColor(widget.state.hue,widget.deviceId)"></span>
+                        </div>
+                        <div class="card-footer" *ngIf="checkCapable(widget.deviceCapabilities,'bri')">
+                            <span>Brightness</span><span style="float:right;"></span>
+                            <span *ngIf="widget.state.on && widget.state.reachable == true" class="blackRange"> <input type="range" min="0" max="254" [(ngModel)]="widget.state.bri" (change)="showChangeBrightness(widget.state.bri,widget.deviceId)"></span>
+                            <span *ngIf="!widget.state.on || widget.state.reachable == false" class="disabledRange"> <input type="range" [(ngModel)]="widget.state.bri" disabled="true" min="0" max="254"></span>  
+                        </div>
+                        <div class="card-footer" *ngIf="checkCapable(widget.deviceCapabilities,'sat')">
+                            <span>Saturation</span><span style="float:right;"></span>
+                            <span *ngIf="widget.state.on && widget.state.reachable == true" class="blackRange"> <input type="range" min="0" max="254" [(ngModel)]="widget.state.sat" (change)="showChangeSaturation(widget.state.sat,widget.deviceId)"></span>
+                            <span *ngIf="!widget.state.on || widget.state.reachable == false" class="disabledRange"> <input type="range" [(ngModel)]="widget.state.sat" disabled="true" min="0" max="254"></span>    
+                        </div>
+                        <!--<div class="card-footer">
+                            <a style="color:#0645ad;cursor:pointer;" (click)="showProfilePopup(widget, $event)">Device Profile</a>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+</div>
